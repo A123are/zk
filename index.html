@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#5b9bf5">
+  <meta name="description" content="校园场馆预约订单页面演示">
+  <title>仲恺农业工程学院</title>
+  <style>
+    :root{color-scheme:light;font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif;color:#484f67;background:#f5f5f9;font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0}button{font:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:2px solid #2368c8;outline-offset:4px}[hidden]{display:none!important}
+    .app{max-width:540px;min-height:100dvh;margin:0 auto;background:#f5f5f9}
+    .header{height:64px;background:#5b9bf5;color:#fff;position:relative;display:flex;align-items:center;justify-content:center}
+    h1{font-size:24px;letter-spacing:1px;font-weight:600;margin:0}.back{position:absolute;left:13px;top:0;height:64px;width:30px;background:none;border:0;color:white;display:grid;place-items:center;padding:0}.back svg{width:18px;height:27px}
+    .tabs{display:flex;height:59px;background:white;border-bottom:1px solid #e8e8ec;position:relative}.tab{flex:1;border:0;background:transparent;color:#333;font-size:20px;padding:0;position:relative;white-space:nowrap}.tab[aria-selected="true"]:after{content:"";position:absolute;height:4px;width:40px;background:#5b9bf5;border-radius:5px;left:50%;bottom:-2px;transform:translateX(-50%)}
+    main{padding:15px 23px 30px}.order{border-radius:17px;background:#fff;overflow:hidden}.order-top{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 23px;border-bottom:1px solid #f2f2f6;gap:12px;font-size:22px}.order-id{font-size:22px;letter-spacing:-.65px;white-space:nowrap}.paid{white-space:nowrap}.paid.completed{color:#669fe7}
+    .order-body{padding:16px 23px 13px}.product{display:flex;gap:26px}.thumbnail{flex:0 0 108px;height:110px;border-radius:6px;background:#dde7f1;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.thumbnail svg{width:57px;height:48px;margin-top:10px}.badge{position:absolute;top:0;left:0;color:white;background:#5b9bf5;padding:4px 14px 5px 9px;border-bottom-right-radius:11px;font-size:18px;line-height:22px;transform:skew(-17deg);transform-origin:top left}.badge span{display:block;transform:skew(17deg)}
+    .product-info{flex:1;min-width:0;padding-top:9px}.product-title{font-size:20px;line-height:1.6;font-weight:400;margin:0;white-space:nowrap}.time{display:block;font-size:22px;line-height:1.4}.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:21px;font-size:22px;line-height:1}.quantity{font-size:20px;color:#838a9e}
+    .details{margin:20px 0 0;font-size:21px}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:43px}.row dt,.row dd{margin:0}.serial{letter-spacing:-.6px;white-space:nowrap}.contact{border:0;background:none;padding:0;color:#669fe7;font-size:22px;display:flex;align-items:center;gap:5px}.contact svg{width:12px;height:18px;color:#8a91a2}
+    .totals{border-top:1px solid #f1f1f5;padding:4px 23px 10px;margin:0;font-size:21px}.totals .row{min-height:44px}.empty{text-align:center;padding:74px 0;color:#989faf}.empty svg{width:64px;height:64px;margin-bottom:12px;color:#cbd4e0}.empty p{font-size:17px;margin:0}.empty small{display:block;font-size:13px;margin-top:10px;color:#a8aebb}
+    dialog{border:0;border-radius:18px;padding:27px;width:calc(100% - 48px);max-width:370px;color:#484f67;box-shadow:0 12px 60px #26355126}dialog::backdrop{background:#18233655}dialog h2{margin:0 0 20px;font-size:22px}dialog dl{font-size:16px;margin:0}dialog .row{min-height:40px}.note{font-size:13px;line-height:1.7;color:#969bad;margin:15px 0 22px}.close{width:100%;background:#5b9bf5;color:white;border:0;border-radius:8px;padding:12px}.toast{position:fixed;bottom:36px;left:50%;transform:translateX(-50%);background:#333b50eb;color:white;border-radius:8px;padding:12px 20px;font-size:14px;white-space:nowrap}
+    @media(max-width:500px){.header{height:54px}.back{height:54px;left:10px}h1{font-size:22px}.tabs{height:49px}.tab{font-size:17px}.tab[aria-selected="true"]:after{width:34px;height:3px}main{padding:13px 18px}.order{border-radius:14px}.order-top{height:61px;padding:0 19px;font-size:18px}.order-id{font-size:18px;letter-spacing:-.5px}.order-body{padding:13px 19px 11px}.product{gap:21px}.thumbnail{flex-basis:90px;height:92px}.badge{font-size:15px;line-height:19px;padding:3px 12px 4px 7px}.thumbnail svg{width:49px;height:42px}.product-info{padding-top:7px}.product-title{font-size:17px}.time{font-size:19px}.price-row{font-size:19px;margin-top:21px}.quantity{font-size:17px}.details{font-size:18px;margin-top:17px}.row{min-height:37px}.contact{font-size:19px}.totals{font-size:18px;padding:3px 19px 8px}.totals .row{min-height:38px}}
+    @media(max-width:390px){main{padding:12px 15px}.order-top{padding:0 16px;font-size:16px}.order-id{font-size:16px}.order-body{padding:12px 16px 10px}.product{gap:17px}.thumbnail{flex-basis:78px;height:81px}.product-title{font-size:14px}.time{font-size:16px}.price-row{font-size:16px;margin-top:17px}.details,.totals{font-size:16px}.contact{font-size:17px}.totals{padding-left:16px;padding-right:16px}.tab{font-size:16px}}
+    @media(max-width:500px){.product-title{font-size:clamp(12px,3.45vw,17px)}}
+    .empty{padding:clamp(110px,31.5vw,170px) 0 0;color:#818b9e}
+    .empty svg{display:block;width:100%;max-width:430px;height:auto;margin:0 auto}
+    .empty p{font-size:21px;font-weight:400;letter-spacing:1px;margin:43px 0 0}
+    @media(max-width:500px){.empty p{font-size:18px;margin-top:32px}}
+    .page-navigation{position:sticky;top:0;z-index:10;background:#f5f5f9}
+    .order+.order{margin-top:18px}
+    .product-title{white-space:normal;overflow-wrap:anywhere}
+    html{overflow-y:auto}body{overflow-x:clip}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="page-navigation">
+    <header class="header"><button class="back" aria-label="返回全部订单"><svg viewBox="0 0 18 28" fill="none"><path d="m15 3-12 11 12 11" stroke="currentColor" stroke-width="2.4"/></svg></button><h1>我的订单</h1></header>
+    <nav class="tabs" role="tablist" aria-label="订单状态">
+      <button id="tab-all" class="tab" role="tab" aria-selected="true" aria-controls="orders" data-status="all">全部</button>
+      <button id="tab-review" class="tab" role="tab" aria-selected="false" aria-controls="orders" tabindex="-1" data-status="review">待审核</button>
+      <button id="tab-pay" class="tab" role="tab" aria-selected="false" aria-controls="orders" tabindex="-1" data-status="pay">待付款</button>
+      <button id="tab-completed" class="tab" role="tab" aria-selected="false" aria-controls="orders" tabindex="-1" data-status="completed">已完成</button>
+      <button id="tab-cancelled" class="tab" role="tab" aria-selected="false" aria-controls="orders" tabindex="-1" data-status="cancelled">已取消</button>
+    </nav>
+    </div>
+    <main id="orders" role="tabpanel" aria-labelledby="tab-all">
+      <article class="order" aria-label="乒乓球9号场订单">
+        <div class="order-top"><span class="order-id">12117114773635891201</span><span class="paid">已付款</span></div>
+        <div class="order-body">
+          <div class="product">
+            <div class="thumbnail" aria-label="场馆图片占位"><div class="badge"><span>已完成</span></div><svg aria-hidden="true" viewBox="0 0 60 50" fill="white"><circle cx="48" cy="10" r="4.5"/><path d="M3 34 18 18a7 7 0 0 1 10 0l11 11 5-5a5 5 0 0 1 7 1l7 10a6 6 0 0 1-5 9H9a7 7 0 0 1-6-10Z"/></svg></div>
+            <div class="product-info"><h2 class="product-title">乒乓球9号场（体育馆） 11月3号</h2><span class="time">17:00-18:00</span><div class="price-row"><span>¥0.00</span><span class="quantity">x1</span></div></div>
+          </div>
+          <dl class="details"><div class="row"><dt>编号</dt><dd class="serial">22117114773635891203</dd></div><div class="row"><dt>蔡俊彬</dt><dd><button class="contact" aria-label="查看蔡俊彬的联系人信息">134****0017<svg viewBox="0 0 12 18" fill="none"><path d="m3 3 6 6-6 6" stroke="currentColor" stroke-width="1.7"/></svg></button></dd></div></dl>
+        </div>
+        <dl class="totals"><div class="row"><dt>金额</dt><dd>¥0.00</dd></div><div class="row"><dt>数量</dt><dd>共1件</dd></div></dl>
+      </article>
+      <div class="empty" hidden role="status">
+        <svg viewBox="0 0 430 225" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="paper" x1="151" y1="17" x2="281" y2="185" gradientUnits="userSpaceOnUse"><stop stop-color="#98c6fa"/><stop offset="1" stop-color="#dcecff"/></linearGradient>
+            <linearGradient id="cross" x1="233" y1="150" x2="299" y2="166" gradientUnits="userSpaceOnUse"><stop stop-color="#69aff7"/><stop offset="1" stop-color="#a5d3fa"/></linearGradient>
+            <linearGradient id="ground" x1="215" y1="140" x2="215" y2="213" gradientUnits="userSpaceOnUse"><stop stop-color="#e5e6ec"/><stop offset="1" stop-color="#f5f5f9" stop-opacity="0"/></linearGradient>
+            <linearGradient id="dot"><stop stop-color="#6aaff5"/><stop offset="1" stop-color="#b6dbf9"/></linearGradient>
+          </defs>
+          <path d="M8 199c24-42 103-66 205-66s183 25 209 66v16H8Z" fill="url(#ground)"/>
+          <g stroke="#d8dbe0" stroke-width="3" stroke-linecap="round"><path d="M80 167v22M332 139v20M382 191v21"/></g>
+          <g fill="#ccced8"><path d="M71 166c0-6 6-17 9-17s10 12 10 18c0 12-19 12-19-1Z"/><path d="M323 136c0-6 6-17 9-17s10 12 10 18c0 12-19 12-19-1Z"/><path d="M373 190c0-6 6-17 9-17s10 12 10 18c0 12-19 12-19-1Z"/></g>
+          <ellipse cx="265" cy="205" rx="24" ry="5" fill="#d5d8e0" opacity=".7"/>
+          <rect x="146" y="17" width="138" height="169" rx="13" fill="url(#paper)"/>
+          <path d="M171 49h88M171 86h59M171 123h46" stroke="#e4f3ff" stroke-width="8" stroke-linecap="round" opacity=".85"/>
+          <circle cx="265" cy="163" r="34" fill="url(#cross)"/>
+          <path d="m252 150 26 26m0-26-26 26" stroke="white" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="109" cy="85" r="6.5" fill="url(#dot)"/><circle cx="130" cy="169" r="6" fill="url(#dot)" opacity=".4"/><circle cx="313" cy="117" r="4" fill="url(#dot)"/>
+        </svg>
+        <p>暂无订单</p>
+      </div>
+    </main>
+  </div>
+  <dialog aria-labelledby="contact-title"><h2 id="contact-title">联系人信息</h2><dl><div class="row"><dt>姓名</dt><dd>蔡俊彬</dd></div><div class="row"><dt>手机号码</dt><dd>134****0017</dd></div></dl><p class="note">此页面为界面演示，手机号码已隐藏部分数字，未连接真实订单系统。</p><button class="close">我知道了</button></dialog>
+  <div class="toast" role="status" hidden>已返回全部订单</div>
+  <script>
+    const tabs=[...document.querySelectorAll('.tab')],order=document.querySelector('.order'),empty=document.querySelector('.empty'),panel=document.querySelector('#orders');
+    const additionalOrders=[
+      {id:'12116250873635891204',serial:'22116250873635891206',court:6,date:'11月1号',time:'18:00-19:00'},
+      {id:'12115306201792937985',serial:'22115306201792937987',court:13,date:'10月29号',time:'18:00-19:00'},
+      {id:'12114362801792937981',serial:'22114362801792937983',court:8,date:'10月25号',time:'17:00-18:00'},
+      {id:'12112013905693540354',serial:'22112013905693540356',court:5,date:'10月20号',time:'19:00-20:00'},
+      {id:'12112013797535023105',serial:'22112013797535023107',court:9,date:'10月18号',time:'16:00-17:00'}
+    ];
+    additionalOrders.forEach(item=>{const card=order.cloneNode(true);card.setAttribute('aria-label','乒乓球'+item.court+'号场 '+item.date+'订单');card.querySelector('.order-id').textContent=item.id;card.querySelector('.serial').textContent=item.serial;card.querySelector('.product-title').textContent='乒乓球'+item.court+'号场（体育馆） '+item.date;card.querySelector('.time').textContent=item.time;panel.insertBefore(card,empty)});
+    const orders=[...panel.querySelectorAll('.order')];
+    function selectTab(tab){tabs.forEach(item=>{const selected=item===tab;item.setAttribute('aria-selected',String(selected));item.tabIndex=selected?0:-1});const show=['all','completed'].includes(tab.dataset.status);orders.forEach(card=>{card.hidden=!show;const status=card.querySelector('.paid');status.textContent=tab.dataset.status==='completed'?'已完成':'已付款';status.classList.toggle('completed',tab.dataset.status==='completed')});empty.hidden=show;panel.setAttribute('aria-labelledby',tab.id);window.scrollTo({top:0,behavior:'instant'})}
+    tabs.forEach((tab,index)=>{tab.addEventListener('click',()=>selectTab(tab));tab.addEventListener('keydown',event=>{let target;if(event.key==='ArrowRight')target=(index+1)%tabs.length;else if(event.key==='ArrowLeft')target=(index+tabs.length-1)%tabs.length;else if(event.key==='Home')target=0;else if(event.key==='End')target=tabs.length-1;else return;event.preventDefault();selectTab(tabs[target]);tabs[target].focus()})});
+    const dialog=document.querySelector('dialog');panel.addEventListener('click',event=>{if(event.target.closest('.contact'))dialog.showModal()});document.querySelector('.close').addEventListener('click',()=>dialog.close());dialog.addEventListener('click',event=>{if(event.target===dialog){const box=dialog.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)dialog.close()}});
+    let toastTimer;document.querySelector('.back').addEventListener('click',()=>{selectTab(tabs[0]);window.scrollTo({top:0,behavior:'smooth'});const toast=document.querySelector('.toast');toast.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.hidden=true,1800)});
+  </script>
+</body>
+</html>
